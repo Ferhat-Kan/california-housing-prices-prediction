@@ -8,6 +8,7 @@ This project aims to predict the average housing prices in different districts o
 2. [Usage](#usage)
 3. [Data Description](#data-description)
 4. [Model Evaluation](#model-evaluation)
+5. [Data Visualization](#Data-Visualization)
 5. [License](#license)
 
 ## Installation
@@ -204,6 +205,40 @@ grid_search_xgb = GridSearchCV(estimator=xgb_model, param_grid=param_grid_xgb, c
 grid_search_xgb.fit(X_train_scaled, y_train)
 
 print("Best Parameters for XGBoost:", grid_search_xgb.best_params_)
+```
+## Data Visualization
+In this project, various visualizations are created to better understand the data and evaluate the model performance. These include:
+
+Target Variable Distribution: A histogram showcasing the distribution of the median house values across districts.
+Correlation Heatmap: A heatmap visualizing the relationships between different features, helping to identify the most significant variables.
+Predicted vs Actual Values Plot: A scatter plot comparing the predicted house values to the actual values, providing insight into the model's performance.
+Sample Visualizations:
+#### 1. Histogram of Median House Values
+This plot displays the distribution of the target variable:
+```python
+plt.hist(housing["median_house_value"], bins=50, edgecolor='black')
+plt.title('Distribution of Median House Values')
+plt.xlabel('House Value')
+plt.ylabel('Frequency')
+plt.show()
+```
+#### 2. Correlation Heatmap
+This heatmap highlights feature relationships:
+```python
+plt.figure(figsize=(10, 8))
+sns.heatmap(housing.corr(), annot=True, cmap='coolwarm', linewidths=0.5)
+plt.title('Correlation Heatmap of Features')
+plt.show()
+```
+#### 3. Predicted vs Actual Values
+A scatter plot comparing predicted house values with actual values:
+```python
+plt.scatter(y_test, y_pred, alpha=0.5)
+plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'k--', lw=3)
+plt.title('Predicted vs Actual House Values')
+plt.xlabel('Actual Values')
+plt.ylabel('Predicted Values')
+plt.show()
 ```
 
 ### License
